@@ -46,7 +46,7 @@ node {
 
         stage('Test Jenkins Python Deployment') {
  
-                sh '''curl --fail http://localhost:5001||exit 1 
+                sh '''curl --fail http://localhost:5000||exit 1 
                       echo "Jenkins Python Deployment test successful ... Website is accessible" 
                    '''
                 echo 'Testing the deployed website...'
