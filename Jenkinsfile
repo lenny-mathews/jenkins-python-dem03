@@ -1,5 +1,5 @@
 node {
-    stages{
+
 
         stage('Checkout') {
             git branch: 'main', url: 'https://github.com/lenny-mathews/jenkins-python-demo2.git'
@@ -55,4 +55,4 @@ node {
                 echo 'Testing the deployed website...'
             }
         }
-    }
+    
