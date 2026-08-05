@@ -12,10 +12,10 @@ node {
             
                 echo 'Installing dependencies...'
                 sh '''
-                 python3 -m venv venv
-               . venv/bin/activate  
-               . venv/bin/python3 -m pip install --upgrade pip
-               . venv/bin/pip3 install -r requirements.txt
+                 python3 -m venv .venv
+                 
+                 .venv/bin/python3 -m pip install --upgrade pip
+                 .venv/bin/pip3 -m pip install -r requirements.txt
                 '''
             
         }
@@ -23,7 +23,7 @@ node {
         stage('Run Application') {
             echo 'Running the Application '
             sh '''
-                    . venv/bin/python3 -m pytest test_app.py
+                    .venv/bin/python3 -m  app.py
                 '''
             }
         
