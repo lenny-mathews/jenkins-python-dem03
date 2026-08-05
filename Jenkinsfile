@@ -20,13 +20,6 @@ node {
             
         }
         
-        stage('Run Application') {
-            echo 'Running the Application '
-            sh '''
-                    .venv/bin/python3 -m  app.py
-                '''
-            }
-        
         stage('Run Test') {
                   
                 sh '''
@@ -35,17 +28,19 @@ node {
                 '''
             
         }
-
-        stage('Deploy') {
-
-              sh '''
-                      echo 'Deploying ..'
-                      nohup . venv/bin/python3 -m app.py &
-                      sleep 5
-                      echo "Deployment successful ... Application is running in the background" 
-                    '''   
-        }
-                      
+        
+        stage('Run Application') {
+            echo 'Running the Application '
+            sh '''
+                    nohup .venv/bin/python3  -m app.py &
+                    echo $! > app.id
+                    sleep 5
+                    cat app.id
+                    echo 'Application deployed sucessfully'
+                '''
+            }
+        
+   
 
         stage('Test Jenkins Python Deployment') {
  
