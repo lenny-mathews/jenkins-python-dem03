@@ -4,7 +4,9 @@ node {
         stage('Checkout') {
             git branch: 'main', url: 'https://github.com/lenny-mathews/jenkins-python-demo2.git'
 
-            echo 'Code Checkout	Completed..'
+            checkout scm
+
+            echo 'Code Checkout	Completed..' 
         }
 
         
