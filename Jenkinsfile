@@ -24,7 +24,7 @@ node {
                   
                 sh '''
                     echo 'Running tests...'
-                    . venv/bin/python3 -m pytest test_app.py
+                    .venv/bin/python3 -m pytest test_app.py
                 '''
             
         }
