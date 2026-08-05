@@ -35,24 +35,23 @@ node {
         }
 
         stage('Deploy') {
-            steps {
-                echo 'Deploying ..'
+
+                
                 sh '''
+                      echo 'Deploying ..'
                       nohup . venv/bin/python3 -m app.py &
                       sleep 5
                       echo "Deployment successful ... Application is running in the background" 
                     '''   
-            }
         }
                       
 
         stage('Test Jenkins Python Deployment') {
-            steps {
-                echo 'Testing the deployed website...'
-
+ 
                 sh '''curl --fail http://localhost:5001||exit 1 
                       echo "Jenkins Python Deployment test successful ... Website is accessible" 
-                      '''
+                   '''
+                echo 'Testing the deployed website...'
             }
         }
     }
