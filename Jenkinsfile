@@ -7,28 +7,31 @@ node {
             echo 'Code Checkout	Completed..'
         }
         stage('Install Dependencies') {
-            steps {
-                echo 'Installing dependencies...'
-                sh 'pip3 install -r requirements.txt'
-            }
-        }
-        stage('Run Application') {
             
-            sh '''
-               python3 -m venv venv
+                echo 'Installing dependencies...'
+                sh '''
+                 python3 -m venv venv
                . venv/bin/activate  
                . venv/bin/python3 -m pip install --upgrade pip
                . venv/bin/pip3 install -r requirements.txt
+                '''
             
-            '''
         }
-        stage('Run Test') {
-            steps {
-                echo 'Running tests...'
-                sh '''
+        stage('Run Application') {
+            echo 'Running the Application '
+            sh '''
                     . venv/bin/python3 -m pytest test_app.py
                 '''
             }
+        }
+        stage('Run Test') {
+            
+                
+                sh '''
+                    echo 'Running tests...'
+                    . venv/bin/python3 -m pytest test_app.py
+                '''
+            
         }
 
         stage('Deploy') {
