@@ -6,6 +6,8 @@ node {
 
             echo 'Code Checkout	Completed..'
         }
+
+        
         stage('Install Dependencies') {
             
                 echo 'Installing dependencies...'
@@ -17,16 +19,16 @@ node {
                 '''
             
         }
+        
         stage('Run Application') {
             echo 'Running the Application '
             sh '''
                     . venv/bin/python3 -m pytest test_app.py
                 '''
             }
-        }
+        
         stage('Run Test') {
-            
-                
+                  
                 sh '''
                     echo 'Running tests...'
                     . venv/bin/python3 -m pytest test_app.py
@@ -36,8 +38,7 @@ node {
 
         stage('Deploy') {
 
-                
-                sh '''
+              sh '''
                       echo 'Deploying ..'
                       nohup . venv/bin/python3 -m app.py &
                       sleep 5
